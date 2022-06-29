@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post"  novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.function.label }}
+            {{ form.function() }}
+            {% for error in form.function.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <br>
+            
+            {{ form.orientation.label }}
+            {{ form.orientation() }}
+            {% for error in form.orientation.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <br>
+
+            {{ form.period.label }}
+            {{ form.period() }} {{ form.period_type() }}
+            {% for error in form.period.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {% for error in form.period_type.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+        <br>
+    </form>
+    <p>
+        <img src="{{ original_src }}" width="45%">
+        {% if retouched_src %}
+        <img src="{{ retouched_src }}" width="45%">
+        {% endif %}
+
+        <br>
+
+        {% if histogram_src %}
+        <img src="{{ histogram_src }}" width="100%">
+        {% endif %}
+    </p>
+{% endblock %}

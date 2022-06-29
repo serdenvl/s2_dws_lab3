@@ -1,0 +1,30 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - lab3</title>
+        {% else %}
+        <title>lab3</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            Pages:
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('upload_image') }}">Upload Image</a>
+            <a href="{{ url_for('default_image') }}">Retouch default</a>
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <h1>{{ title }}</h1>
+        {% block content %}{% endblock %}
+    </body>
+</html>
